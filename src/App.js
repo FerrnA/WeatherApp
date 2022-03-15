@@ -1,26 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-//import Card from "./components/Card.jsx";
 import Cards from "./components/Cards.jsx";
 import SearchBar from "./components/SearchBar.jsx";
 
+const apiKey = process.env.REACT_APP_APIKEY;
+
 function App() {
+  const [cities, setCities] = useState([]);
+  function handleOnSearch(city) {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.main !== undefined) {
+          const city = {
+            min: Math.floor(res.main.temp_min),
+            max: Math.floor(res.main.temp_max),
+            img: res.weather[0].icon,
+            id: res.id,
+            wind: res.wind.speed,
+            temp: Math.floor(res.main.temp),
+            name: res.name,
+            weather: res.weather[0].main,
+            clouds: res.clouds.all,
+            latitud: res.coord.lat,
+            longitud: res.coord.lon,
+          };
+          setCities((oldCities) => [...oldCities, city]);
+        } else {
+          alert("ciudad no encontrada");
+        }
+      });
+  }
   return (
     <div className="App">
-      {/* <div>
-        <Card
-          max={Cairns.main.temp_max}
-          min={Cairns.main.temp_min}
-          name={Cairns.name}
-          img={Cairns.weather[0].icon}
-          onClose={() => alert(Cairns.name)}
-        />
-      </div> */}
       <div>
-        <SearchBar onSearch={(ciudad) => alert(ciudad)} />
+        <SearchBar handleOnSearch={handleOnSearch} />
       </div>
       <div>
-        <Cards cities={{ data: "" }} />
+        <Cards cities={cities} setCities={setCities} />
       </div>
     </div>
   );

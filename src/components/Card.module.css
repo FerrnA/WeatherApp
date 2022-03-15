@@ -1,35 +1,14 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;900&display=swap);
 
-.botton {
-  background-color: transparent;
-  border-radius: 50%;
-  border: none;
-  color: black;
-  width: 25px;
-  height: 25px;
-  font-size: 14px;
-  margin-bottom: 0.1rem;
-  margin-top: 5px;
-}
-.botton:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-  color: tomato;
-}
-.divdelboton {
-  display: flex;
-  width: 100%;
-  justify-content: right;
-  margin-right: 10px;
-}
-
-.bordes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.card {
   width: 25rem;
   height: 17rem;
   margin: 20px 8px 8px 8px;
-  padding: 0px 0 200px 0; /* superior de 0 pero boton x tiene padding bottom */
+  padding: 0px 0 200px 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
   border-radius: 8px;
   border: none;
@@ -42,16 +21,43 @@
   font-size: 20px;
 }
 
-.ciudade {
+.close_button_div {
+  width: 100%;
+  margin-right: 10px;
+  display: flex;
+  justify-content: right;
+}
+.close_button {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 0.1rem;
+  margin-top: 5px;
+  font-size: 14px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  color: black;
+}
+.close_button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: tomato;
+}
+
+.h1_title {
+  width: 100%;
+  margin-bottom: 0.8rem;
   font-size: 40px;
   font-weight: 500;
   color: rgb(255, 255, 255);
-  width: 100%;
-  margin-bottom: 0.8rem;
 }
 
-/* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
-/* transition: transform 0.5s */
-/* .div:hover{ transform: ?1,1} */
+.grid_city_data {
+  width: 100%;
+  display: grid;
+  grid-template: 100px 1fr / 1fr 1fr 1.05fr;
+}
+.grid_city_data img {
+  justify-self: center;
+}
 
 /* http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=4ae2636d8dfbdc3044bede63951a019b */
