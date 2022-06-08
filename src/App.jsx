@@ -24,7 +24,10 @@ function App() {
             clouds: res.clouds.all,
             latitud: res.coord.lat,
             longitud: res.coord.lon,
+            humidity: res.main.humidity,
+            feels_like: Math.floor(res.main.feels_like),
           };
+          console.log(city); //clean console.log
           setCities((oldCities) => [...oldCities, city]);
         } else {
           alert("ciudad no encontrada");

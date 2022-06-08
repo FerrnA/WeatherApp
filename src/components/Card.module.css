@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;900&display=swap);
 
 .card {
-  width: 25rem;
-  height: 17rem;
+  width: 20rem;
+  height: 16rem;
   margin: 20px 8px 8px 8px;
   padding: 0px 0 200px 0;
 
@@ -46,7 +46,7 @@
 .h1_title {
   width: 100%;
   margin-bottom: 0.8rem;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 500;
   color: rgb(255, 255, 255);
 }
@@ -58,6 +58,22 @@
 }
 .grid_city_data img {
   justify-self: center;
+  filter: drop-shadow(0 0 0.75rem rgba(50, 50, 93, 1));
+}
+
+.dataBottom_container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.dataBottom_container span {
+  font-size: 2.3rem;
+}
+.dataBottom_container div:nth-child(2) {
+  padding-left: 8px;
+  border-left: 1px solid #777778;
 }
 
 /* http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=4ae2636d8dfbdc3044bede63951a019b */

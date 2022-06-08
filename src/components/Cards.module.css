@@ -1,6 +1,7 @@
 .cards {
   display: flex;
   justify-content: space-around;
-  align-items: top;
-  height: 95vh;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-height: 95vh;
 }

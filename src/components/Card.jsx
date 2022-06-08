@@ -25,6 +25,21 @@ export default function Card({ city, setCities }) {
         </div>
         <img src={"http://openweathermap.org/img/wn/" + city.img + "@2x.png"} alt="" />
       </div>
+      <div className={m.dataBottom_container}>
+        <span className={m.dataBottom_temp}>{city.temp} º</span>
+        <div>
+          Humidity: <br />
+          {city.humidity} %
+        </div>
+        <div>
+          Wind: <br />
+          {city.wind} km/h
+        </div>
+        <div>
+          Feels like: <br />
+          {city.feels_like} º
+        </div>
+      </div>
     </div>
   );
 }
