@@ -8,7 +8,7 @@ const apiKey = process.env.REACT_APP_APIKEY;
 function App() {
   const [cities, setCities] = useState([]);
   function handleOnSearch(city) {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
       .then((r) => r.json())
       .then((res) => {
         if (res.main !== undefined) {
