@@ -5,8 +5,39 @@ import SearchBar from "./components/SearchBar.jsx";
 
 const apiKey = process.env.REACT_APP_APIKEY;
 
+const updateLocalStorage = (city) => {
+  let storageCities = localStorage.getItem("cities");
+  let citiesArray = [];
+  if (storageCities) {
+    try {
+      citiesArray = JSON.parse(storageCities);
+      if (!Array.isArray(citiesArray)) {
+        citiesArray = [];
+      }
+    } catch (e) {
+      console.error("Error parsing cities from localStorage:", e);
+      citiesArray = [];
+    }
+  }
+  citiesArray.push(city);
+  localStorage.setItem("cities", JSON.stringify(citiesArray));
+}
+
 function App() {
   const [cities, setCities] = useState([]);
+  useEffect(() => {
+    let storageCities = localStorage.getItem("cities");
+    if (storageCities) {
+      try {
+        storageCities = JSON.parse(storageCities);
+        if (Array.isArray(storageCities)) {
+          setCities((oldCities) => [...oldCities, ...storageCities]);
+        }
+      } catch (e) {
+        console.error("Error parsing cities from localStorage:", e);
+      }
+    }
+  }, []);
   function handleOnSearch(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
       .then((r) => r.json())
@@ -28,6 +59,7 @@ function App() {
             feels_like: Math.floor(res.main.feels_like),
           };
           console.log(city); //clean console.log
+          updateLocalStorage(city)
           setCities((oldCities) => [...oldCities, city]);
         } else {
           alert("ciudad no encontrada");
