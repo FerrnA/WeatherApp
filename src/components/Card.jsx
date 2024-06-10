@@ -1,8 +1,27 @@
 import React from "react";
 import m from "./Card.module.css";
 
+const deleteCityAtLocalStorage = (cityId) => {
+  let storageCities = localStorage.getItem("cities");
+  let citiesArray = [];
+  if (storageCities) {
+    try {
+      citiesArray = JSON.parse(storageCities);
+      if (!Array.isArray(citiesArray)) {
+        citiesArray = [];
+      }
+    } catch (e) {
+      console.error("Error parsing cities from localStorage:", e);
+      citiesArray = [];
+    }
+  }
+  const cities = citiesArray.filter(c => c.id !== cityId);
+  localStorage.setItem("cities", JSON.stringify(cities));
+}
+
 export default function Card({ city, setCities }) {
   function onClose(id) {
+    deleteCityAtLocalStorage(id)
     setCities((oldCities) => oldCities.filter((c) => c.id !== id));
   }
   return (
